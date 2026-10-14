@@ -1,0 +1,18 @@
+From: reservations@harbourviewhotel.example
+Subject: Your stay is confirmed – Booking #HV-48213
+
+Hi Armen,
+
+Thanks for staying with Harbourview Hotel Lisbon!
+
+Check-in:  Mon 12 Oct 2026
+Check-out: Wed 14 Oct 2026
+Room: Superior Double, 2 nights
+
+Room rate         2 x €129.00   €258.00
+City tax          2 x €4.00       €8.00
+---------------------------------------
+Total charged to Visa ••4417   €266.00
+
+See you again soon,
+The Harbourview team

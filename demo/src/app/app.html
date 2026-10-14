@@ -1,0 +1,123 @@
+<header>
+  <h1><span class="grad">Nano</span> Expenses</h1>
+  <p class="sub">Travel expenses, read by Gemini Nano. Everything runs in your browser.</p>
+
+  <div class="status">
+    @switch (nano.status()) {
+      @case ('checking') { <span class="chip">Checking…</span> }
+      @case ('unsupported') {
+        <span class="chip bad">Not supported</span>
+        <span class="hint">Needs desktop Chrome 148+ with the built-in AI APIs.</span>
+      }
+      @case ('unavailable') {
+        <span class="chip bad">Unavailable</span>
+        <span class="hint">This device can't run Gemini Nano (disk space, GPU or OS).</span>
+      }
+      @case ('ready') { <span class="chip ok">Gemini Nano ready</span> }
+      @case ('downloading') {
+        <span class="chip">Downloading {{ nano.downloadProgress() | percent }}</span>
+        <progress [value]="nano.downloadProgress()"></progress>
+      }
+      @default {
+        <span class="chip">{{ nano.status() }}</span>
+        <button class="primary" (click)="enable()" [disabled]="busy()">Enable on-device AI</button>
+      }
+    }
+    @if (busy(); as label) { <span class="busy">{{ label }}</span> }
+  </div>
+  @if (error(); as message) { <p class="error">{{ message }}</p> }
+</header>
+
+<main [class.locked]="nano.status() !== 'ready'">
+  <section class="col">
+    <div class="card">
+      <h2>1. Add a receipt</h2>
+      <textarea
+        rows="7"
+        placeholder="Paste a booking email or receipt text… or paste a screenshot"
+        [value]="pasted()"
+        (input)="pasted.set($any($event.target).value)"
+        (paste)="onPaste($event)"
+      ></textarea>
+      <div class="row">
+        <button (click)="fromText()" [disabled]="!pasted() || busy()">Read text</button>
+        <label class="drop" (dragover)="$event.preventDefault()" (drop)="$event.preventDefault(); fromPhoto($event.dataTransfer?.files?.[0])">
+          <input type="file" accept="image/*" (change)="fromPhoto($any($event.target).files[0])" hidden />
+          Drop a photo or click to upload
+        </label>
+      </div>
+      @if (photoUrl(); as url) { <img class="preview" [src]="url" alt="Receipt being read" /> }
+    </div>
+
+    <div class="card">
+      <h2>2. Check and save</h2>
+      <div class="grid">
+        <label>Merchant <input [formField]="expenseForm.merchant" /></label>
+        <label>Date <input type="date" [formField]="expenseForm.date" /></label>
+        <label>Amount <input type="number" step="0.01" [formField]="expenseForm.amount" /></label>
+        <label>Currency <input [formField]="expenseForm.currency"/></label>
+        <label>Category
+          <select [formField]="expenseForm.category">
+            @for (c of categories; track c) { <option [value]="c">{{ c }}</option> }
+          </select>
+        </label>
+        <label class="wide">Description <input [formField]="expenseForm.description" /></label>
+      </div>
+      <button class="primary" (click)="save()" [disabled]="expenseForm().invalid() || busy()">Save expense</button>
+    </div>
+  </section>
+
+  <section class="col">
+    <div class="card">
+      <h2>3. Ask</h2>
+      <form class="row" (submit)="$event.preventDefault(); runCommand()">
+        <input
+          class="grow"
+          placeholder="e.g. mark the last two as client dinner"
+          [value]="command()"
+          (input)="command.set($any($event.target).value)"
+        />
+        <button [disabled]="!command() || busy()">Run</button>
+      </form>
+      @if (lastCommand(); as cmd) {
+        <p class="reply">{{ cmd.reply }}</p>
+        <pre class="code"><span class="file">action.json</span>{{ cmd | json }}</pre>
+      }
+    </div>
+
+    <div class="card">
+      <h2>Expenses</h2>
+      @for (e of store.expenses(); track e.id) {
+        <div class="expense">
+          <div class="top">
+            <span class="id">{{ e.id }}</span>
+            <strong>{{ e.merchant }}</strong>
+            <span class="chip small">{{ e.category }}</span>
+            <span class="amount">{{ e.amount | number: '1.0-2' }} {{ e.currency }}</span>
+          </div>
+          <div class="meta">
+            {{ e.date }} · {{ e.description }}
+            @if (e.translation) {
+              <span class="chip small lang">{{ e.language }} → en</span> <em>{{ e.translation }}</em>
+            }
+          </div>
+          @if (e.note) { <div class="note">📝 {{ e.note }}</div> }
+        </div>
+      } @empty {
+        <p class="hint">No expenses yet.</p>
+      }
+      @if (store.totals().length) {
+        <div class="totals">
+          @for (t of store.totals(); track t.currency) {
+            <span>{{ t.amount | number: '1.0-2' }} {{ t.currency }}</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="card">
+      <h2>Model output</h2>
+      <pre class="code"><span class="file">stream</span>{{ nano.stream() || '…' }}</pre>
+    </div>
+  </section>
+</main>

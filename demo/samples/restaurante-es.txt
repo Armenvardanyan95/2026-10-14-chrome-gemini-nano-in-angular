@@ -1,0 +1,17 @@
+RESTAURANTE CASA PEPA
+C/ de la Princesa 21, 28008 Madrid
+NIF: B-87654321
+
+Fecha: 13/10/2026   Hora: 21:47
+Mesa: 7   Comensales: 3
+
+3  Menú degustación        28,00   84,00
+1  Botella vino tinto      24,00   24,00
+2  Agua mineral             2,50    5,00
+1  Tarta de queso           6,50    6,50
+
+Base imponible                    108,64
+IVA 10%                            10,86
+TOTAL                           119,50 €
+
+Pagado con tarjeta. ¡Gracias por su visita!

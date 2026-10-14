@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="620" viewBox="0 0 420 620">
+  <rect width="420" height="620" fill="#fffdf7"/>
+  <g font-family="Yu Gothic, Meiryo, MS Gothic, sans-serif" fill="#222">
+    <text x="210" y="60" font-size="28" font-weight="bold" text-anchor="middle">らーめん 一番星</text>
+    <text x="210" y="92" font-size="15" text-anchor="middle">東京都渋谷区道玄坂2-10-7</text>
+    <text x="210" y="114" font-size="15" text-anchor="middle">TEL 03-1234-5678</text>
+    <text x="210" y="160" font-size="22" text-anchor="middle">領 収 書</text>
+    <text x="40" y="200" font-size="15">2026年10月11日(日) 13:05</text>
+    <line x1="40" y1="216" x2="380" y2="216" stroke="#222" stroke-dasharray="4 4"/>
+    <text x="40" y="250" font-size="17">特製豚骨らーめん</text>
+    <text x="380" y="250" font-size="17" text-anchor="end">¥1,350</text>
+    <text x="40" y="282" font-size="17">味玉トッピング</text>
+    <text x="380" y="282" font-size="17" text-anchor="end">¥150</text>
+    <text x="40" y="314" font-size="17">餃子(6個)</text>
+    <text x="380" y="314" font-size="17" text-anchor="end">¥480</text>
+    <text x="40" y="346" font-size="17">生ビール</text>
+    <text x="380" y="346" font-size="17" text-anchor="end">¥650</text>
+    <line x1="40" y1="366" x2="380" y2="366" stroke="#222" stroke-dasharray="4 4"/>
+    <text x="40" y="398" font-size="16">小計</text>
+    <text x="380" y="398" font-size="16" text-anchor="end">¥2,630</text>
+    <text x="40" y="424" font-size="16">(内消費税10%)</text>
+    <text x="380" y="424" font-size="16" text-anchor="end">¥239</text>
+    <text x="40" y="470" font-size="24" font-weight="bold">合計</text>
+    <text x="380" y="470" font-size="24" font-weight="bold" text-anchor="end">¥2,630</text>
+    <text x="40" y="506" font-size="16">クレジット</text>
+    <text x="380" y="506" font-size="16" text-anchor="end">¥2,630</text>
+    <text x="210" y="570" font-size="15" text-anchor="middle">ご来店ありがとうございました</text>
+  </g>
+</svg>

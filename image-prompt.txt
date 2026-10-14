@@ -1,0 +1,5 @@
+Edit the first image. Keep the layout, background, logos, social icons, colors, fonts and all other elements exactly the same. Only replace the text:
+- First title line in the purple box: "Hands on: Gemini Nano in Angular" ("Hands on: " in white, "Gemini Nano in Angular" in yellow)
+- Second title line in the purple box, all white: "AI in the Browser, Live"
+- Black bar at the bottom: "October 14, 4:30 PM UTC"
+Render all text crisply and spelled exactly as given. Do not add any other text.
